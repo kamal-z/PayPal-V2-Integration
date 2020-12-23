@@ -47,7 +47,10 @@ public class PaypalController {
 	public ModelAndView changeOrderState(@RequestParam(value="token", required = true) String token, @RequestParam(value="orderId", required = true) String orderId) throws HttpException {
 		 String requestId = UUID.randomUUID().toString();
 		 AuthorizeOrderResult authorizeOrderResult = paypalService.AuthrizePaypalOrder(PaymentInstractionDataService.paymentData.get(orderId), requestId, new PaypalAhthorizeRequestBuilder());
-		 //paypalService.captureOrder(authorizeOrderResult.getAuthorizationId(), new PaypalCaptureRequestBuilder());
+		 /* deactivate capture payment
+		 	paypalService.captureOrder(authorizeOrderResult.getAuthorizationId(), new PaypalCaptureRequestBuilder());
+		  * 
+		  */
 		 ModelAndView modelAndView = new ModelAndView();
 	     modelAndView.setViewName("orderConfirmation.html");
 	     return modelAndView;
